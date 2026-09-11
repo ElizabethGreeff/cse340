@@ -4,13 +4,17 @@
         <h1>
             <%= title %>
         </h1>
-        <p>Explore different categories of service opportunities.</p>
-        <ul>
-            <li>Environmental </li>
-            <li>Educational</li>
-            <li>Community Service</li>
-            <li>Health and Wellness</li>
+        <p class="page-intro">Explore different categories of service opportunities.</p>
+
+        <ul class="category-list">
+            <% categories.forEach(category=> { %>
+                <li class="category-item">
+                    <span class="category-name">
+                        <%= category.name %>
+                    </span>
+                </li>
+                <% }); %>
         </ul>
     </main>
 
-<%- include('partials/footer') %>
+    <%- include('partials/footer') %>

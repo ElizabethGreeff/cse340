@@ -56,3 +56,40 @@ VALUES
 (3, 'Community Gardening', 'A community gardening event to help the environment.', 'local park', '2026-09-05'),
 (3, 'Reading Program', 'A community effort to read and help the neighborhood.', 'community center', '2026-02-12');
 
+
+-- ========================================
+-- Create Category Table
+-- ========================================
+CREATE TABLE category (
+	category_id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE
+);		
+
+-- ========================================
+-- Insert sample data: Categories   
+-- ========================================
+INSERT INTO category (name)
+VALUES
+('Cleanup'),
+('Environmental'),
+('Food Donation'),
+('Community'),
+('Education');
+
+
+-- ========================================
+-- Create Table for Many-to-Many Relationship between Service Projects and Categories
+-- ========================================
+CREATE TABLE service_project_category (
+    service_project_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+    PRIMARY KEY (service_project_id, category_id),
+    CONSTRAINT fk_project
+    FOREIGN KEY (service_project_id) 
+    REFERENCES service_project(project_id) 
+    ON DELETE CASCADE,
+    CONSTRAINT fk_category
+    FOREIGN KEY (category_id)
+    REFERENCES category(category_id) 
+    ON DELETE CASCADE
+);

@@ -1,17 +1,29 @@
 <%- include('partials/header') %>
+
     <main>
         <h1>
             <%= title %>
         </h1>
+        <p class="page-intro">Here are some upcoming service projects you can participate in:</p>
         <h2>Upcoming Service Projects</h2>
-        <ul>
-            <% serviceProjects.forEach(serviceProject => { %>
-                <li>
-                    <%= serviceProject.date.toDateString() %>- <%= serviceProject.title %>! Run by: <strong><%= serviceProject.organization_name %></strong>
-                    <br>
-                    <%= serviceProject.description %> At <%= serviceProject.location %>                    
+
+        <ul class="project-list">
+            <% serviceProjects.forEach(serviceProject=> { %>
+                <li class="project-item">
+                    <p class="project-header">
+                        <%= serviceProject.date.toLocaleDateString('en-US', { weekday: 'short' , year: 'numeric' ,
+                            month: 'short' , day: 'numeric' }) %>:
+                            <strong>
+                                <%= serviceProject.title %>
+                            </strong>
+                            (<%= serviceProject.organization_name %>)
+                    </p>
+                    <p class="project-details">
+                        <%= serviceProject.description %> · <%= serviceProject.location %>
+                    </p>
                 </li>
-            <% }); %>
+                <% }); %>
         </ul>
     </main>
-<%- include('partials/footer') %>
+
+    <%- include('partials/footer') %>
