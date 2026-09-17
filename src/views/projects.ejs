@@ -7,18 +7,18 @@
         <p class="page-intro">Here are some upcoming service projects you can participate in:</p>
 
         <ul class="project-list">
-            <% serviceProjects.forEach(serviceProject=> { %>
+            <% projects.forEach(project=> { %>
                 <li class="project-item">
                     <p class="project-header">
-                        <%= serviceProject.date.toLocaleDateString('en-US', { weekday: 'short' , year: 'numeric' ,
+                        <%= project.date.toLocaleDateString('en-US', { weekday: 'short' , year: 'numeric' ,
                             month: 'short' , day: 'numeric' }) %>:
                             <strong>
-                                <%= serviceProject.title %>
+                                <%= project.title %>
                             </strong>
-                            (<%= serviceProject.organization_name %>)
+                            (<%= project.organization_name %>)
                     </p>
                     <p class="project-details">
-                        <%= serviceProject.description %> · <%= serviceProject.location %>
+                        <%= project.description %> · <%= project.location %>
                     </p>
                 </li>
                 <% }); %>

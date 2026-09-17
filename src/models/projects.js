@@ -1,6 +1,6 @@
 import db from './db.js'
 
-const getAllServiceProjects = async () => {
+const getAllProjects = async () => {
     const query = `
         SELECT project_id, service_project.organization_id, title, service_project.description, location, date,
         organization.name AS organization_name
@@ -14,4 +14,4 @@ const getAllServiceProjects = async () => {
     return result.rows;
 }
 
-export { getAllServiceProjects }  
+export { getAllProjects }  
