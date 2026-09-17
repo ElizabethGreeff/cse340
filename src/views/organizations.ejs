@@ -13,7 +13,9 @@
                         class="org-logo">
                     <div class="org-info">
                         <h3 class="org-name">
-                            <%= organization.name %>
+                            <a href="/organization/<%= organization.organization_id %>">
+                                <%= organization.name %>
+                            </a>
                         </h3>
                         <p class="org-email">
                             <%= organization.contact_email %>
