@@ -4,20 +4,25 @@
         <h1>
             <%= title %>
         </h1>
-        <% projects.forEach(project => { %>
-        <div>
-            <h2>
-                <a href="/project/<%= project.project_id %>">
-                    <%= project.title %>
-                </a>
-            </h2>
-            <p>
-                by <a href="/organization/<%= project.organization_id %>">
-                    <%= project.organization_name %>
-                </a>
-            </p>
+        <p class="page-intro">Browse current service projects from our partner organizations.</p>
+
+        <div class="project-list">
+            <% projects.forEach(project=> { %>
+                <article class="project-card">
+                    <h2 class="project-title">
+                        <a href="/project/<%= project.project_id %>">
+                            <%= project.title %>
+                        </a>
+                    </h2>
+                    <p class="project-org">
+                        by
+                        <a href="/organization/<%= project.organization_id %>">
+                            <%= project.organization_name %>
+                        </a>
+                    </p>
+                </article>
+                <% }); %>
         </div>
     </main>
-    <% }); %>
 
 <%- include('partials/footer') %>
