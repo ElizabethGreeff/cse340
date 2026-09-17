@@ -4,25 +4,20 @@
         <h1>
             <%= title %>
         </h1>
-        <p class="page-intro">Here are some upcoming service projects you can participate in:</p>
-
-        <ul class="project-list">
-            <% projects.forEach(project=> { %>
-                <li class="project-item">
-                    <p class="project-header">
-                        <%= project.date.toLocaleDateString('en-US', { weekday: 'short' , year: 'numeric' ,
-                            month: 'short' , day: 'numeric' }) %>:
-                            <strong>
-                                <%= project.title %>
-                            </strong>
-                            (<%= project.organization_name %>)
-                    </p>
-                    <p class="project-details">
-                        <%= project.description %> · <%= project.location %>
-                    </p>
-                </li>
-                <% }); %>
-        </ul>
+        <% projects.forEach(project => { %>
+        <div>
+            <h2>
+                <a href="/project/<%= project.project_id %>">
+                    <%= project.title %>
+                </a>
+            </h2>
+            <p>
+                by <a href="/organization/<%= project.organization_id %>">
+                    <%= project.organization_name %>
+                </a>
+            </p>
+        </div>
     </main>
+    <% }); %>
 
-    <%- include('partials/footer') %>
+<%- include('partials/footer') %>
