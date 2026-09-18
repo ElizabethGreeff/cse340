@@ -4,27 +4,33 @@
         <h1>
             <%= title %>
         </h1>
-        <h2 >
-            <%= category.name %>
-        </h2>
-        <p class="page-intro">Service projects in this category.</p>
 
-        <% if (projects.length > 0) { %>
-            <ul class="project-list">
-                <% projects.forEach(project => { %>
-                    <li class="project-item">
-                        <a href="/project/<%= project.project_id %>" class="project-link">
-                            <%= project.title %>
-                        </a>
-                    </li>
-                <% }); %>
-            </ul>
-        <% } else { %>
-            <p>No projects found in this category.</p>
-        <% } %>
+        <article class="detail-card">
+            <h2 class="detail-section-title">
+                <%= category.name %>
+            </h2>
+            <p class="page-intro">Service projects in this category.</p>
 
-        <p><a href="/categories" class="back-link">Back to Categories</a></p>
-        
+            <% if (projects && projects.length> 0) { %>
+                <div class="project-list">
+                    <% projects.forEach(project=> { %>
+                        <article class="project-card">
+                            <h3 class="project-title">
+                                <a href="/project/<%= project.project_id %>">
+                                    <%= project.title %>
+                                </a>
+                            </h3>
+                        </article>
+                        <% }); %>
+                </div>
+                <% } else { %>
+                    <p>No projects found in this category.</p>
+                    <% } %>
+
+                        <p class="back-row">
+                            <a href="/categories" class="back-link">← Back to Categories</a>
+                        </p>
+        </article>
     </main>
 
-<%- include('partials/footer') %>
+    <%- include('partials/footer') %>

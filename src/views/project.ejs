@@ -20,26 +20,26 @@
             </div>
 
             <h2 class="detail-section-title">Categories</h2>
-            <% if (categories && categories.length > 0) { %>
-                <ul class="category-list">
-                    <% categories.forEach(category => { %>
-                        <li class="category-item">
-                            <a href="/category/<%= category.id %>" class="detail-link">
+            <% if (categories && categories.length> 0) { %>
+                <ul class="simple-list">
+                    <% categories.forEach(category=> { %>
+                        <li>
+                            <a href="/category/<%= category.category_id %>" class="detail-link">
                                 <%= category.name %>
                             </a>
                         </li>
-                    <% }); %>
+                        <% }); %>
                 </ul>
-            <% } else { %>
-                <p>No categories found for this project.</p>
-            <% } %>
+                <% } else { %>
+                    <p>No categories found for this project.</p>
+                    <% } %>
 
-            <h2 class="detail-section-title">Organization</h2>
-            <p>
-                <a href="/organization/<%= project.organization_id %>" class="detail-link">
-                    <%= project.organization_name %>
-                </a>
-            </p>
+                        <h2 class="detail-section-title">Organization</h2>
+                        <p>
+                            <a href="/organization/<%= project.organization_id %>" class="detail-link">
+                                <%= project.organization_name %>
+                            </a>
+                        </p>
         </article>
     </main>
 

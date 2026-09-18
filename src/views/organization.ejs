@@ -23,7 +23,7 @@
             <ul class="simple-list">
                 <% projects.forEach(project=> { %>
                     <li>
-                        <a href="/project/<%= project.project_id %>">
+                        <a href="/project/<%= project.project_id %>" class="detail-link">
                             <%= project.title %>
                         </a>
                     </li>
@@ -32,4 +32,4 @@
         </article>
     </main>
 
-<%- include('partials/footer') %>
+    <%- include('partials/footer') %>

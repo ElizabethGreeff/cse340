@@ -116,7 +116,7 @@ VALUES
 (9, 2), -- Community Gardening -> Environmental
 (9, 4), -- Community Gardening -> Community
 (10, 1), -- Community Recycling -> Cleanup
-(19, 2), -- Community Recycling -> Environmental
+(10, 2), -- Community Recycling -> Environmental
 (10, 4), -- Community Recycling -> Community
 (11, 4), -- Group Painting -> Community
 (12, 1), -- House Cleaning -> Cleanup

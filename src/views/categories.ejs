@@ -9,14 +9,12 @@
         <ul class="category-list">
             <% categories.forEach(category=> { %>
                 <li class="category-item">
-                    <span class="category-name">
-                        <a href="/category/<%= category.category_id %>" class="detail-link">
-                            <%= category.name %>
-                        </a>
-                    </span>
+                    <a href="/category/<%= category.category_id %>" class="category-name detail-link">
+                        <%= category.name %>
+                    </a>
                 </li>
-            <% }); %>
+                <% }); %>
         </ul>
     </main>
 
-<%- include('partials/footer') %>
+    <%- include('partials/footer') %>
