@@ -10,11 +10,13 @@
             <% categories.forEach(category=> { %>
                 <li class="category-item">
                     <span class="category-name">
-                        <%= category.name %>
+                        <a href="/category/<%= category.category_id %>" class="detail-link">
+                            <%= category.name %>
+                        </a>
                     </span>
                 </li>
-                <% }); %>
+            <% }); %>
         </ul>
     </main>
 
-    <%- include('partials/footer') %>
+<%- include('partials/footer') %>
