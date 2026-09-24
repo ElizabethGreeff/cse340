@@ -1,4 +1,5 @@
 <%- include('partials/header') %>
+
     <main>
         <h1>
             <%= title %>
@@ -7,7 +8,7 @@
         <form action="/new-organization" method="POST">
             <div class="form-group">
                 <label for="name">Organization Name</label>
-                <input required type="text" id="name" name="name" maxlength="150"/>
+                <input required type="text" id="name" name="name" maxlength="150">
             </div>
 
             <div class="form-group">
@@ -17,11 +18,11 @@
 
             <div class="form-group">
                 <label for="contactEmail">Contact Email</label>
-                <input requiredtype="email" id="contactEmail" name="contactEmail" />
+                <input required type="email" id="contactEmail" name="contactEmail">
             </div>
 
             <button type="submit">Create Organization</button>
         </form>
-
     </main>
+
 <%- include('partials/footer') %>

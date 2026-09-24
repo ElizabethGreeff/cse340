@@ -20,7 +20,6 @@
             </div>
 
             <h2 class="detail-section-title">Categories</h2>
-            <a href="/assign-categories/<%= project.project_id %>">Edit Categories</a>
             <% if (categories && categories.length> 0) { %>
                 <ul class="simple-list">
                     <% categories.forEach(category=> { %>
@@ -33,17 +32,19 @@
                 </ul>
                 <% } else { %>
                     <p>No categories found for this project.</p>
-                    <% } %>
+                <% } %>
 
-                        <h2 class="detail-section-title">Organization</h2>
-                        <p>
-                            <a href="/organization/<%= project.organization_id %>" class="detail-link">
-                                <%= project.organization_name %>
-                            </a>
-                        </p>
-                        <p>
-                            <a href="/edit-project/<%= project.project_id %>">Edit Project</a>
-                        </p>
+                <h2 class="detail-section-title">Organization</h2>
+                <p>
+                    <a href="/organization/<%= project.organization_id %>" class="detail-link">
+                        <%= project.organization_name %>
+                    </a>
+                </p>
+
+                <p class="action-row">
+                    <a href="/assign-categories/<%= project.project_id %>" class="action-link">Edit Categories</a>
+                    <a href="/edit-project/<%= project.project_id %>" class="action-link">Edit Project</a>
+                </p>
         </article>
     </main>
 
