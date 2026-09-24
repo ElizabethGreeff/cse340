@@ -1,5 +1,5 @@
 // Import any needed model functions
-import { getAllProjects, getUpcomingProjects, getProjectDetails, createProject } from '../models/projects.js';
+import { getAllProjects, getUpcomingProjects, getProjectDetails, createProject, updateProject } from '../models/projects.js';
 import { getCategoriesByProjectId } from '../models/categories.js';
 import { getAllOrganizations } from '../models/organizations.js';
 import { body, validationResult } from 'express-validator';
@@ -51,7 +51,7 @@ const showNewProjectForm = async (req, res) => {
     const title = 'Add New Service Project';
 
     res.render('new-project', { title, organizations });
-}
+};
 
 const processNewProjectForm = async (req, res) => {
     // Extract form data from req.body
@@ -81,7 +81,55 @@ const processNewProjectForm = async (req, res) => {
         req.flash('error', 'There was an error creating the service project.');
         res.redirect('/new-project');
     }
-}
+};
+
+const showEditProjectForm = async (req, res) => {
+    try {
+        const projectId = req.params.projectId;
+        const projectdetails = await getProjectDetails(projectId);
+
+        if (!projectdetails) {
+            req.flash('error', 'Project not found.');
+            return res.redirect('/projects');
+        }
+
+        const organizations = await getAllOrganizations();
+        const title = 'Edit Service Project';
+
+        res.render('edit-project', { title, projectDetails: projectdetails, organizations });
+    } catch (error) {
+        console.error('Error fetching project details:', error);
+        req.flash('error', 'There was an error fetching the project details.');
+        res.redirect('/projects');
+    }
+};
+
+const processEditProjectForm = async (req, res, next) => {
+    //Check for validation errors
+    const results = validationResult(req);
+    if (!results.isEmpty()) {
+        // Validation failed - loop through errors
+        results.array().forEach((error) => {
+            req.flash('error', error.msg);
+        });
+
+        // Redirect back to the edit project form
+        return res.redirect(`/project/${req.params.id}/edit`);
+    }
+
+    // Extract form data from req.body
+    try {
+        const projectId = req.params.id || req.params.projectId; // Use either id or projectId based on your route definition
+        const { title, description, location, date, organizationId } = req.body;
+
+
+        await updateProject(projectId, title, description, location, date, organizationId);
+        req.flash('success', 'Project updated successfully!');
+        res.redirect(`/project/${projectId}`);
+    } catch (err) {
+        next(err);
+    }
+};
 
 // Export any controller functions
-export { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation };
+export { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm };
