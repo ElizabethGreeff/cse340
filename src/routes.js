@@ -36,7 +36,9 @@ import {
 import {
     showLoginForm,
     processLoginForm,
-    processLogout
+    processLogout,
+    requireLogin,
+    showDashboard
 } from './controllers/users.js';
 import { testErrorPage } from './controllers/errors.js';
 
@@ -78,6 +80,8 @@ router.post('/register', processUserRegistrationForm);
 router.get('/login', showLoginForm);
 router.post('/login', processLoginForm);
 router.get('/logout', processLogout);
+
+router.get('/dashboard', requireLogin, showDashboard);
 
 router.get('/test-error', testErrorPage);
 
