@@ -16,9 +16,12 @@
                     <p class="org-detail-description">
                         <%= organizationDetails.description %>
                     </p>
-                    <p class="action-row">
-                        <a href="/edit-organization/<%= organizationDetails.organization_id %>" class="action-link">Edit Organization</a>
-                    </p>
+                    <% if (user && user.role_name==='admin' ) { %>
+                        <p class="action-row">
+                            <a href="/edit-organization/<%= organizationDetails.organization_id %>" class="action-link">Edit
+                                Organization</a>
+                        </p>
+                    <% } %>
                 </div>
             </div>
 
@@ -30,7 +33,7 @@
                             <%= project.title %>
                         </a>
                     </li>
-                    <% }) %>
+                <% }) %>
             </ul>
         </article>
     </main>

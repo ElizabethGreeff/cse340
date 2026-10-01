@@ -73,6 +73,27 @@ const requireLogin = (req, res, next) => {
     next();
 };
 
+/**
+ * Middleware factory to require a specific role for route access.
+ * @param {string} role - Required role name (e.g. 'admin')
+ * @returns {Function} Express middleware
+ */
+const requireRole = (role) => {
+    return (req, res, next) => {
+        if (!req.session || !req.session.user) {
+            req.flash('error', 'You must be logged in to access this page.');
+            return res.redirect('/login');
+        }
+
+        if (req.session.user.role_name !== role) {
+            req.flash('error', 'You do not have permission to access this page.');
+            return res.redirect('/');
+        }
+
+        next();
+    };
+};
+
 const showDashboard = (req, res) => {
     const user = req.session.user;
     res.render('dashboard', {
@@ -89,5 +110,6 @@ export {
     processLoginForm,
     processLogout,
     requireLogin,
+    requireRole,
     showDashboard
 };

@@ -21,12 +21,14 @@
                         </a>
                     </p>
                 </article>
-                <% }); %>
+            <% }); %>
         </div>
 
-        <p class="action-row">
-            <a href="/new-project" class="btn">Add a New Service Project</a>
-        </p>
+        <% if (user && user.role_name==='admin' ) { %>
+            <p class="action-row">
+                <a href="/new-project" class="btn">Add a New Service Project</a>
+            </p>
+        <% } %>
     </main>
 
 <%- include('partials/footer') %>
