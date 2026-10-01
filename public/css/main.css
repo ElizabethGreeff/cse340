@@ -610,6 +610,49 @@ button[type="submit"]:hover,
     color: #fff !important;
 }
 
+/* ========== Dashboard ========== */
+.dashboard-card {
+    max-width: 28rem;
+}
+
+.dashboard-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.dashboard-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+}
+
+.dashboard-value {
+    font-size: 1.1rem;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.action-link-secondary {
+    background: #e2e8f0 !important;
+    color: var(--text) !important;
+}
+
+.action-link-secondary:hover,
+.action-link-secondary:focus-visible {
+    background: #cbd5e1 !important;
+    color: var(--text) !important;
+}
+
 /* Mobile adjustments */
 @media (max-width: 600px) {
     .org-card {

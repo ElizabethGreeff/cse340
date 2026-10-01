@@ -4,13 +4,31 @@
         <h1>
             <%= title %>
         </h1>
+        <p class="page-intro">Welcome back. Here's your account overview.</p>
 
-        <h2>Dashboard</h2>
-        <p>Name: <%= name %>
-        </p>
-        <p>Username: <%= email %>
-        </p>
+        <article class="detail-card dashboard-card">
+            <h2 class="detail-section-title">Account details</h2>
 
+            <div class="dashboard-meta">
+                <div class="dashboard-row">
+                    <span class="dashboard-label">Name</span>
+                    <span class="dashboard-value">
+                        <%= name %>
+                    </span>
+                </div>
+                <div class="dashboard-row">
+                    <span class="dashboard-label">Email</span>
+                    <span class="dashboard-value">
+                        <%= email %>
+                    </span>
+                </div>
+            </div>
+
+            <p class="action-row">
+                <a href="/" class="action-link">Back to Home</a>
+                <a href="/logout" class="action-link action-link-secondary">Log out</a>
+            </p>
+        </article>
     </main>
 
 <%- include('partials/footer') %>
