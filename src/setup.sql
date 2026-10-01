@@ -126,3 +126,35 @@ VALUES
 (14, 4), -- Community Gardening -> Community
 (15, 4), -- Reading Program -> Community
 (15, 5); -- Reading Program -> Education
+
+
+-- ========================================
+-- Create Roles Table
+-- ========================================
+CREATE TABLE roles (
+    role_id SERIAL PRIMARY KEY,
+    role_name VARCHAR(50) UNIQUE NOT NULL,
+    role_description TEXT
+);
+
+-- ========================================
+-- Insert sample data: Roles
+-- ========================================
+INSERT INTO roles (role_name, role_description)
+VALUES
+('Admin', 'Administrator with full access'),
+('User', 'Regular user with limited access'),
+('Volunteer', 'Volunteer with specific permissions');
+
+-- ========================================
+-- Create Users Table
+-- ========================================
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (role_id) REFERENCES roles(role_id)
+);
