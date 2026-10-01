@@ -142,8 +142,8 @@ CREATE TABLE roles (
 -- ========================================
 INSERT INTO roles (role_name, role_description)
 VALUES
-('Admin', 'Administrator with full access'),
 ('User', 'Regular user with limited access'),
+('Admin', 'Administrator with full access'),
 ('Volunteer', 'Volunteer with specific permissions');
 
 -- ========================================
@@ -155,5 +155,5 @@ CREATE TABLE users (
     email VARCHAR(100) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     role_id INTEGER REFERENCES roles(role_id),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
