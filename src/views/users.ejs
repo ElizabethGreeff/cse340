@@ -1,0 +1,47 @@
+<%- include('partials/header') %>
+
+    <main>
+        <h1>
+            <%= title %>
+        </h1>
+        <p class="page-intro">All accounts registered in the system.</p>
+
+        <% if (users && users.length> 0) { %>
+            <div class="users-table-wrap">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(u=> { %>
+                            <tr>
+                                <td data-label="Name">
+                                    <%= u.name %>
+                                </td>
+                                <td data-label="Email">
+                                    <%= u.email %>
+                                </td>
+                                <td data-label="Role">
+                                    <span class="role-pill role-<%= u.role_name %>">
+                                        <%= u.role_name %>
+                                    </span>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <p>No users found.</p>
+        <% } %>
+
+        <p class="action-row">
+            <a href="/dashboard" class="action-link action-link-secondary">Back to Dashboard</a>
+        </p>
+    </main>
+
+<%- include('partials/footer') %>

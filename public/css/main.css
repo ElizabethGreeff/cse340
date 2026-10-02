@@ -134,6 +134,11 @@ footer {
 
 /*Additionl styling for fun*/
 
+.home-dashboard-row {
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
 /*Shared page intro*/
 .page-intro {
     color: var(--text-muted);
@@ -613,6 +618,8 @@ button[type="submit"]:hover,
 /* ========== Dashboard ========== */
 .dashboard-card {
     max-width: 28rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .dashboard-meta {
@@ -653,6 +660,86 @@ button[type="submit"]:hover,
     color: var(--text) !important;
 }
 
+main:has(.dashboard-card) h1,
+main:has(.dashboard-card) .page-intro {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main:has(.dashboard-card) .action-row {
+    justify-content: center;
+}
+
+/*Users list (admin) */
+.users-table-wrap {
+    overflow-x: auto;
+    background: var(--white);
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.98rem;
+}
+
+.users-table th,
+.users-table td {
+    text-align: left;
+    padding: 0.85rem 1.15rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.users-table th {
+    background: #f8fafc;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.users-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.users-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.role-pill {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.role-admin {
+    background: #ccfbf1;
+    color: var(--primary-dark);
+}
+
+.role-user {
+    background: #e2e8f0;
+    color: var(--text);
+}
+
+.dashboard-role {
+    display: inline-block;
+    width: fit-content;
+    background: #ccfbf1;
+    color: var(--primary-dark);
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    text-transform: capitalize;
+}
+
 /* Mobile adjustments */
 @media (max-width: 600px) {
     .org-card {
@@ -688,5 +775,31 @@ button[type="submit"]:hover,
 
     .flash-container {
         padding: 0 1.15rem;
+    }
+
+    .users-table thead {
+        display: none;
+    }
+
+    .users-table tr {
+        display: block;
+        padding: 0.85rem 1rem;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .users-table td {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.35rem 0;
+        border-bottom: none;
+    }
+
+    .users-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        text-transform: uppercase;
     }
 }

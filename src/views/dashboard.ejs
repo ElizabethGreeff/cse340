@@ -24,10 +24,22 @@
                 </div>
             </div>
 
+            <% if (user && user.role_name==='admin' ) { %>
+                <div class="dashboard-row">
+                    <span class="dashboard-label">Role</span>
+                    <span class="dashboard-value dashboard-role">
+                        <%= user.role_name %>
+                    </span>
+                </div>
+            <% } %>
+
             <p class="action-row">
-                <a href="/" class="action-link">Back to Home</a>
+                <% if (user && user.role_name==='admin' ) { %>
+                    <a href="/users" class="action-link">View all users</a>
+                <% } %>
+                <a href="/" class="action-link action-link-secondary">Back to Home</a>
                 <a href="/logout" class="action-link action-link-secondary">Log out</a>
-            </p>
+        </p>
         </article>
     </main>
 

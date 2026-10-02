@@ -37,7 +37,8 @@ import {
     processLogout,
     requireLogin,
     requireRole,
-    showDashboard
+    showDashboard,
+    showUsersPage
 } from './controllers/users.js';
 import { testErrorPage } from './controllers/errors.js';
 
@@ -72,6 +73,8 @@ router.post('/new-category', requireRole('admin'), categoryValidation, processNe
 
 router.get('/edit-category/:id', requireRole('admin'), showEditCategoryForm);
 router.post('/edit-category/:id', requireRole('admin'), categoryValidation, processEditCategoryForm);
+
+router.get('/users', requireRole('admin'), showUsersPage);
 
 router.get('/register', showUserRegistrationForm);
 router.post('/register', processUserRegistrationForm);
