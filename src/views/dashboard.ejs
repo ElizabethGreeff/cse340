@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-    <main>
+    <main class="dashboard-page">
         <h1>
             <%= title %>
         </h1>
@@ -16,22 +16,23 @@
                         <%= name %>
                     </span>
                 </div>
+
                 <div class="dashboard-row">
                     <span class="dashboard-label">Email</span>
                     <span class="dashboard-value">
                         <%= email %>
                     </span>
                 </div>
-            </div>
 
-            <% if (user && user.role_name==='admin' ) { %>
-                <div class="dashboard-row">
-                    <span class="dashboard-label">Role</span>
-                    <span class="dashboard-value dashboard-role">
-                        <%= user.role_name %>
-                    </span>
-                </div>
-            <% } %>
+                <% if (user && user.role_name==='admin' ) { %>
+                    <div class="dashboard-row">
+                        <span class="dashboard-label">Role</span>
+                        <span class="dashboard-value dashboard-role">
+                            <%= user.role_name %>
+                        </span>
+                    </div>
+                <% } %>
+            </div>
 
             <p class="action-row">
                 <% if (user && user.role_name==='admin' ) { %>
@@ -39,8 +40,39 @@
                 <% } %>
                 <a href="/" class="action-link action-link-secondary">Back to Home</a>
                 <a href="/logout" class="action-link action-link-secondary">Log out</a>
-        </p>
+            </p>
         </article>
+
+        <section class="dashboard-volunteers">
+            <h2 class="detail-section-title">My volunteer projects</h2>
+
+            <% if (volunteeredProjects && volunteeredProjects.length> 0) { %>
+                <div class="project-list">
+                    <% volunteeredProjects.forEach(project=> { %>
+                        <article class="project-card">
+                            <h3 class="project-title">
+                                <a href="/project/<%= project.project_id %>">
+                                    <%= project.title %>
+                                </a>
+                            </h3>
+                            <p class="project-org">
+                                <%= project.organization_name %> ·
+                                    <%= new Date(project.date).toLocaleDateString() %> ·
+                                        <%= project.location %>
+                            </p>
+                            <form action="/dashboard/unvolunteer/<%= project.project_id %>" method="POST"
+                                class="inline-form">
+                                <button type="submit" class="action-link action-link-secondary">Stop
+                                    volunteering</button>
+                            </form>
+                        </article>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <p class="page-intro">You have not signed up for any projects yet. Browse the <a href="/projects"
+                        class="detail-link">projects list</a> to get started.</p>
+            <% } %>
+        </section>
     </main>
 
 <%- include('partials/footer') %>

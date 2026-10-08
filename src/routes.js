@@ -17,7 +17,9 @@ import {
     projectValidation,
     showProjectDetailsPage,
     showEditProjectForm,
-    processEditProjectForm
+    processEditProjectForm,
+    processVolunteer,
+    processUnvolunteer
 } from './controllers/projects.js';
 import {showCategoriesPage,
     showCategoryDetailsPage,
@@ -38,7 +40,8 @@ import {
     requireLogin,
     requireRole,
     showDashboard,
-    showUsersPage
+    showUsersPage,
+    processDashboardUnvolunteer
 } from './controllers/users.js';
 import { testErrorPage } from './controllers/errors.js';
 
@@ -64,6 +67,11 @@ router.post('/new-project', requireRole('admin'), projectValidation, processNewP
 
 router.get('/edit-project/:projectId', requireRole('admin'), showEditProjectForm);
 router.post('/edit-project/:projectId', requireRole('admin'), projectValidation, processEditProjectForm);
+
+router.post('/project/:id/volunteer', requireLogin, processVolunteer);
+router.post('/project/:id/unvolunteer', requireLogin, processUnvolunteer);
+
+router.post('/dashboard/unvolunteer/:id', requireLogin, processDashboardUnvolunteer);
 
 router.get('/assign-categories/:projectId', requireRole('admin'), showAssignCategoriesForm);
 router.post('/assign-categories/:projectId', requireRole('admin'), processAssignCategoriesForm);

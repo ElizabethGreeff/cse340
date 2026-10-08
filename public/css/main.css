@@ -740,6 +740,51 @@ main:has(.dashboard-card) .action-row {
     text-transform: capitalize;
 }
 
+/* Volunteer stuff */
+
+.inline-form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    max-width: none;
+}
+
+.inline-form button.action-link {
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.volunteer-status {
+    color: var(--primary-dark);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.dashboard-volunteers {
+    max-width: 40rem;
+    margin: 2.5rem auto 0;
+}
+
+.dashboard-volunteers .project-card {
+    margin-bottom: 0;
+}
+
+.dashboard-volunteers .inline-form {
+    margin-top: 0.75rem;
+}
+
+.dashboard-page h1,
+.dashboard-page .page-intro {
+    text-align: center;
+}
+
+.dashboard-page .action-row {
+    justify-content: center;
+}
+
 /* Mobile adjustments */
 @media (max-width: 600px) {
     .org-card {

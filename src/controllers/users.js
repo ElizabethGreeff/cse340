@@ -4,6 +4,10 @@ import {
     authenticateUser,
     getAllUsers
 } from '../models/users.js';
+import {
+    getProjectsByUserId,
+    removeVolunteer
+} from '../models/projects.js';
 
 const showUserRegistrationForm = (req, res) => {
     res.render('register', { title: 'Register' });
@@ -98,13 +102,31 @@ const requireRole = (role) => {
     };
 };
 
-const showDashboard = (req, res) => {
+const showDashboard = async (req, res) => {
     const user = req.session.user;
+    const volunteeredProjects = await getProjectsByUserId(user.user_id);
+
     res.render('dashboard', {
         title: 'Dashboard',
         name: user.name,
-        email: user.email
+        email: user.email,
+        volunteeredProjects
     });
+};
+
+const processDashboardUnvolunteer = async (req, res) => {
+    try {
+        const projectId = req.params.id;
+        const userId = req.session.user.user_id;
+
+        await removeVolunteer(userId, projectId);
+        req.flash('success', 'You have been removed as a volunteer for this project.');
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.error('Error removing volunteer from dashboard:', error);
+        req.flash('error', 'Unable to remove your volunteer signup.');
+        res.redirect('/dashboard');
+    }
 };
 
 const showUsersPage = async (req, res) => {
@@ -128,5 +150,6 @@ export {
     requireLogin,
     requireRole,
     showDashboard,
-    showUsersPage
+    showUsersPage,
+    processDashboardUnvolunteer
 };
